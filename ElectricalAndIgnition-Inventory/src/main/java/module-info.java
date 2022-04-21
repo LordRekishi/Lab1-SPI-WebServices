@@ -1,4 +1,4 @@
-import se.iths.inventory.ElectricalAndIgnitionInventory;
+import se.iths.electricalignition.ElectricalAndIgnitionInventory;
 import se.iths.inventory.interfaces.Inventory;
 
 module se.iths.inventory.electricalignition {

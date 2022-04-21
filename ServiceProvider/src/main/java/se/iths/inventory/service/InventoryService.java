@@ -43,7 +43,7 @@ public class InventoryService {
                 .findFirst();
     }
 
-    public Optional<List<Part>> getPartByName(String name) {
+    public Optional<List<Part>> getPartsByName(String name) {
         List<Part> parts = new ArrayList<>();
 
         for (Inventory inventory : loader) {
@@ -53,7 +53,7 @@ public class InventoryService {
         return Optional.ofNullable(parts);
     }
 
-    public Optional<List<Part>> getPartByName(String name, String category) {
+    public Optional<List<Part>> getPartsByName(String name, String category) {
         return loader.stream()
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))

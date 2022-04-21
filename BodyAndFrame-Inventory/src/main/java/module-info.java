@@ -1,4 +1,4 @@
-import se.iths.inventory.BodyAndFrameInventory;
+import se.iths.bodyframe.BodyAndFrameInventory;
 import se.iths.inventory.interfaces.Inventory;
 
 module se.iths.inventory.bodyframe {

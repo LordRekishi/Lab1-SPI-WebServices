@@ -1,4 +1,4 @@
-package se.iths.inventory;
+package se.iths.bodyframe;
 
 import se.iths.inventory.entity.Part;
 import se.iths.inventory.interfaces.Inventory;

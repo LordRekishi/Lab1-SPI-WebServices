@@ -14,7 +14,8 @@ public class Part {
     public Part(Long id, String name, Integer cabinet, Integer shelf, int quantity, int value) {
         this.id = id;
         this.name = name;
-        this.position = new HashMap<>(cabinet, shelf);
+        this.position = new HashMap<>();
+        position.put(cabinet, shelf);
         this.quantity = quantity;
         this.value = value;
         this.totalValue = quantity * value;

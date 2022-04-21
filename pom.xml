@@ -13,6 +13,7 @@
         <module>ServiceProvider</module>
         <module>BodyAndFrame-Inventory</module>
         <module>ElectricalAndIgnition-inventory</module>
+        <module>Client</module>
     </modules>
 
     <properties>

@@ -1,7 +1,7 @@
-package se.iths.service;
+package se.iths.inventory.service;
 
-import se.iths.entity.Part;
-import se.iths.interfaces.Inventory;
+import se.iths.inventory.entity.Part;
+import se.iths.inventory.interfaces.Inventory;
 
 import java.util.*;
 

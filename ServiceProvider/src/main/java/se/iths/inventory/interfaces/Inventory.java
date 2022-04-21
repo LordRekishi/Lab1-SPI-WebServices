@@ -1,6 +1,6 @@
-package se.iths.interfaces;
+package se.iths.inventory.interfaces;
 
-import se.iths.entity.Part;
+import se.iths.inventory.entity.Part;
 
 import java.util.List;
 

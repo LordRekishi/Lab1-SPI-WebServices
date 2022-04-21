@@ -1,4 +1,4 @@
-package se.iths.entity;
+package se.iths.inventory.entity;
 
 import java.util.HashMap;
 import java.util.Map;

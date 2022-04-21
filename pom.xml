@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>se.iths</groupId>
+    <groupId>se.iths.inventory</groupId>
     <artifactId>Lab1-SPI-WebServices</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>ServiceProvider</module>
+        <module>BodyAndFrame-Inventory</module>
     </modules>
 
     <properties>

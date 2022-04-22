@@ -5,6 +5,7 @@ import se.iths.inventory.interfaces.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BodyAndFrameInventory implements Inventory {
 

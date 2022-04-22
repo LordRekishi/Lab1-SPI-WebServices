@@ -29,7 +29,8 @@ public class InventoryService {
         Part part = null;
 
         for (Inventory inventory : loader) {
-            part = inventory.getPartByID(id);
+            if (part == null)
+                part = inventory.getPartByID(id);
         }
 
         return Optional.ofNullable(part);
@@ -40,6 +41,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(inventory -> inventory.getPartByID(id))
+                .filter(Objects::nonNull)
                 .findFirst();
     }
 
@@ -58,6 +60,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(inventory -> inventory.getPartsByName(name))
+                .filter(Objects::nonNull)
                 .findFirst();
     }
 
@@ -76,6 +79,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(inventory -> inventory.getPartsByPosition(cabinet, shelf))
+                .filter(Objects::nonNull)
                 .findFirst();
     }
 
@@ -84,6 +88,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(Inventory::getAll)
+                .filter(Objects::nonNull)
                 .findFirst();
     }
 }

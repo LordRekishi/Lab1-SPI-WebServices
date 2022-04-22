@@ -7,6 +7,7 @@ public class Client {
         InventoryService service = InventoryService.getInstance();
 
         requestPartByID(1L, service);
+        requestPartByID(4L, "ELECTRICAL_AND_IGNITION", service);
         requestPartByID(4L, "BODY AND FRAME", service);
         requestPartsByName("Sensor cable", service);
         requestPartsByName("Handlebar", "BODY AND FRAME", service);

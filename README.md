@@ -14,7 +14,7 @@ part categories as their own inventories. This app also include a custom annotat
 
 ## How to use
 
-1. Clone [this repository]() to your favorite IDE.
+1. Clone [this repository](https://github.com/LordRekishi/Lab1-SPI-WebServices.git) to your favorite IDE.
 2. Run the `Main method` in the `Client` module, `Client.java` class
 3. Enjoy beautiful console printouts of demo methods!
 

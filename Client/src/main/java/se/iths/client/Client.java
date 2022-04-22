@@ -6,17 +6,49 @@ public class Client {
     public static void main(String[] args) {
         InventoryService service = InventoryService.getInstance();
 
+        System.out.println("""
+                Check Inventory descriptions demo
+                ----------------------""");
+        requestDescription("Electrical", service);
+        requestDescription("Body", service);
+        requestDescription("NONE", service);
+
+        System.out.println("""
+                
+                Parts by ID demo
+                ----------------------""");
         requestPartByID(1L, service);
         requestPartByID(4L, "ELECTRICAL_AND_IGNITION", service);
         requestPartByID(4L, "BODY AND FRAME", service);
+        System.out.println("""
+                
+                Parts by Name demo
+                ----------------------""");
         requestPartsByName("Sensor cable", service);
         requestPartsByName("Handlebar", "BODY AND FRAME", service);
+        System.out.println("""
+                
+                Parts by Position demo
+                ----------------------""");
         requestPartsByPosition(1, 8, service);
         requestPartsByPosition(1, 0, "ELECTRICAL_AND_IGNITION", service);
+        System.out.println("""
+                
+                Get All demo
+                ----------------------""");
         requestAll(service);
         requestAllPartsByCategory("BODY AND FRAME", service);
         requestAllPartsByCategory("ELECTRICAL_AND_IGNITION", service);
         requestAllPartsByCategory("NONE EXISTING", service);
+    }
+
+    private static void requestDescription(String name, InventoryService service) {
+        service.getDescription(name)
+                .ifPresentOrElse(description -> System.out.println(
+                        "Inventory name: '" + description.name() + "'\n" +
+                        "Description: '" + description.inventoryDescription() + "'\n" +
+                        "Author: '" + description.author() + "'"),
+                        () -> System.out.println("No description with name containing '" + name + "' found!"));
     }
 
     private static void requestPartByID(Long id, InventoryService service) {

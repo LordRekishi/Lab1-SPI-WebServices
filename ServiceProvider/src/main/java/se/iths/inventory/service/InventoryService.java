@@ -6,7 +6,6 @@ import se.iths.inventory.interfaces.Inventory;
 import java.util.*;
 
 public class InventoryService {
-
     private static InventoryService inventoryService;
     private final ServiceLoader<Inventory> loader;
 
@@ -81,6 +80,16 @@ public class InventoryService {
                 .map(inventory -> inventory.getPartsByPosition(cabinet, shelf))
                 .filter(Objects::nonNull)
                 .findFirst();
+    }
+
+    public Optional<List<Part>> getAll() {
+        List<Part> parts = new ArrayList<>();
+
+        for (Inventory inventory : loader) {
+            parts.addAll(inventory.getAll());
+        }
+
+        return Optional.of(parts);
     }
 
     public Optional<List<Part>> getAllByCategory(String category) {

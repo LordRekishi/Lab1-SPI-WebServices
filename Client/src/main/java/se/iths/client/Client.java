@@ -13,6 +13,7 @@ public class Client {
         requestPartsByName("Handlebar", "BODY AND FRAME", service);
         requestPartsByPosition(1, 8, service);
         requestPartsByPosition(1, 0, "ELECTRICAL_AND_IGNITION", service);
+        requestAll(service);
         requestAllPartsByCategory("BODY AND FRAME", service);
         requestAllPartsByCategory("ELECTRICAL_AND_IGNITION", service);
         requestAllPartsByCategory("NONE EXISTING", service);
@@ -52,6 +53,12 @@ public class Client {
         service.getPartByPosition(cabinet, shelf, category)
                 .ifPresentOrElse(parts -> System.out.println("Parts in cabinet '" + cabinet + "' and on shelf '" + shelf + "' was found in '" + category + "', here are the details: " + parts),
                         () -> System.out.println("Parts in cabinet '" + cabinet + "' and on shelf '" + shelf + "' not found in '" + category + "' Inventory"));
+    }
+
+    private static void requestAll(InventoryService service) {
+        service.getAll()
+                .ifPresentOrElse(parts -> System.out.println("Returning all parts in all categories, here are the details: " + parts),
+                        () -> System.out.println("No parts found!"));
     }
 
     private static void requestAllPartsByCategory(String category, InventoryService service) {

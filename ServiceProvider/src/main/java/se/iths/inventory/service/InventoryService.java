@@ -1,5 +1,6 @@
 package se.iths.inventory.service;
 
+import se.iths.inventory.annotation.Description;
 import se.iths.inventory.entity.Part;
 import se.iths.inventory.interfaces.Inventory;
 
@@ -98,6 +99,14 @@ public class InventoryService {
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(Inventory::getAll)
                 .filter(Objects::nonNull)
+                .findFirst();
+    }
+
+    public Optional<Description> getDescription(String name) {
+        return loader.stream()
+                .map(ServiceLoader.Provider::get)
+                .map(inventory -> inventory.getClass().getAnnotation(Description.class))
+                .filter(description -> description.name().contains(name))
                 .findFirst();
     }
 }

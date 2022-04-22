@@ -1,14 +1,21 @@
 package se.iths.electricalignition;
 
+import se.iths.inventory.annotation.Description;
 import se.iths.inventory.entity.Part;
 import se.iths.inventory.interfaces.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Description(
+        name = "Electrical & Ignition Inventory",
+        inventoryDescription = """
+         This inventory includes parts for the electrical system and ignition;
+         for example wiring, ignition fobs, fuse boxes, etc.""",
+        author = "Patrik Fallqvist Magnusson")
 public class ElectricalAndIgnitionInventory implements Inventory {
 
-    public static final String ELECTRICAL_AND_IGNITION_INVENTORY = "ELECTRICAL_AND_IGNITION";
+    public static final String ELECTRICAL_AND_IGNITION_INVENTORY = "ELECTRICAL AND IGNITION";
     private final List<Part> parts;
 
     public ElectricalAndIgnitionInventory() {

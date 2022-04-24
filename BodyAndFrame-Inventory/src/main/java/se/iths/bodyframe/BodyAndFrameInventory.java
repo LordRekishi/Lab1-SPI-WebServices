@@ -1,18 +1,19 @@
 package se.iths.bodyframe;
 
+import se.iths.inventory.annotation.Author;
 import se.iths.inventory.annotation.Description;
+import se.iths.inventory.annotation.Name;
 import se.iths.inventory.entity.Part;
 import se.iths.inventory.interfaces.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Description(
-        name = "Body & Frame Inventory",
-        inventoryDescription = """
+@Name(name = "Body & Frame Inventory")
+@Description(inventoryDescription = """
          This inventory includes parts specifically for the body and frame of the motorcycle;
-         for example handlebars, plastic covers, etc.""",
-        author = "Patrik Fallqvist Magnusson")
+         for example handlebars, plastic covers, etc.""")
+@Author(author = "Patrik Fallqvist Magnusson")
 public class BodyAndFrameInventory implements Inventory {
 
     public static final String BODY_AND_FRAME_INVENTORY = "BODY AND FRAME";

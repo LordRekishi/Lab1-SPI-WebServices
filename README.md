@@ -24,7 +24,7 @@ part categories as their own inventories. This app also include a custom annotat
 
 ### 1. **Service Provider:**
 
-- This is the `main service` module consisting of `four entities`:
+- This is the `main service` module consisting of `six entities`:
 
 #### One entity class (`Part`)
 - The class includes six `fields`:
@@ -54,14 +54,14 @@ implementations of the Inventory interface.
 - The service class mirrors the interface methods and streams through the `ServiceLoader` providers and filters them
 according to the method intended functionality. As well as one method for looking for the description annotation on inventories.
 
-#### One custom annotation (`Description`)
-- The annotation includes three `methods`:  
-- `String name()` default "No name"
-  - Specify the name of the inventory
-- `String inventoryDescription()` default "No description"
-  - Used to give a more in-depth description of the annotated inventory
-- `String author()` default "No author"
-  - Specify the author of the description
+#### Three custom annotations (`Name`, `Description`, `Author`)
+- The annotations include one `method` each:  
+  - `String name()` default "No name"
+    - Specify the name of the inventory
+  - `String inventoryDescription()` default "No description"
+    - Used to give a more in-depth description of the annotated inventory
+  - `String author()` default "No author"
+    - Specify the author of the description
 
 #### `module-info.java` of the Service Provider:
 

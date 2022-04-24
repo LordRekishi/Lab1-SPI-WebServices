@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Description {
-    String inventoryDescription() default "No description";
+public @interface Name {
+    String name() default "No name";
 }

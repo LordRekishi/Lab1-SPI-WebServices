@@ -1,6 +1,12 @@
 package se.iths.client;
 
+import se.iths.inventory.annotation.Author;
+import se.iths.inventory.annotation.Description;
+import se.iths.inventory.annotation.Name;
 import se.iths.inventory.service.InventoryService;
+
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) {
@@ -9,31 +15,34 @@ public class Client {
         System.out.println("""
                 Check Inventory descriptions demo
                 ----------------------""");
-        requestDescription("Electrical", service);
-        requestDescription("Body", service);
-        requestDescription("NONE", service);
+        requestAnnotations("Body", service);
+        requestAnnotations("Electrical", service);
+        requestAnnotations("NONE", service);
 
         System.out.println("""
-                
+                                
                 Parts by ID demo
                 ----------------------""");
         requestPartByID(1L, service);
         requestPartByID(4L, "ELECTRICAL_AND_IGNITION", service);
         requestPartByID(4L, "BODY AND FRAME", service);
+
         System.out.println("""
-                
+                                
                 Parts by Name demo
                 ----------------------""");
         requestPartsByName("Sensor cable", service);
         requestPartsByName("Handlebar", "BODY AND FRAME", service);
+
         System.out.println("""
-                
+                                
                 Parts by Position demo
                 ----------------------""");
         requestPartsByPosition(1, 8, service);
         requestPartsByPosition(1, 0, "ELECTRICAL_AND_IGNITION", service);
+
         System.out.println("""
-                
+                                
                 Get All demo
                 ----------------------""");
         requestAll(service);
@@ -42,13 +51,20 @@ public class Client {
         requestAllPartsByCategory("NONE EXISTING", service);
     }
 
-    private static void requestDescription(String name, InventoryService service) {
-        service.getDescription(name)
-                .ifPresentOrElse(description -> System.out.println(
-                        "Inventory name: '" + description.name() + "'\n" +
-                        "Description: '" + description.inventoryDescription() + "'\n" +
-                        "Author: '" + description.author() + "'"),
-                        () -> System.out.println("No description with name containing '" + name + "' found!"));
+    private static void requestAnnotations(String name, InventoryService service) {
+        service.getAnnotations(name)
+                .ifPresentOrElse(annotations -> {
+                    for (Annotation annotation : annotations) {
+                        String collectedName = annotation.annotationType().getAnnotation(Name.class).name();
+                        String collectedDescription = annotation.annotationType().getAnnotation(Description.class).inventoryDescription();
+                        String collectedAuthor = annotation.annotationType().getAnnotation(Author.class).author();
+
+                        System.out.println("Inventory name: '" + collectedName + "'\n" +
+                                "Description: '" + collectedDescription + "'\n" +
+                                "Author: '" + collectedAuthor + "'");
+                    }
+                }, () -> System.out.println("No description with name containing '" + name + "' found!"));
+
     }
 
     private static void requestPartByID(Long id, InventoryService service) {

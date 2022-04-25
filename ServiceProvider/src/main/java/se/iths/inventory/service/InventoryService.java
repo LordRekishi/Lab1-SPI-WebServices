@@ -61,7 +61,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(inventory -> inventory.getPartsByName(name))
-                .filter(Objects::nonNull)
+                .filter(parts -> !parts.isEmpty())
                 .findFirst();
     }
 
@@ -80,7 +80,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(inventory -> inventory.getPartsByPosition(cabinet, shelf))
-                .filter(Objects::nonNull)
+                .filter(parts -> !parts.isEmpty())
                 .findFirst();
     }
 
@@ -99,7 +99,7 @@ public class InventoryService {
                 .map(ServiceLoader.Provider::get)
                 .filter(inventory -> inventory.getCategory().equals(category))
                 .map(Inventory::getAll)
-                .filter(Objects::nonNull)
+                .filter(parts -> !parts.isEmpty())
                 .findFirst();
     }
 

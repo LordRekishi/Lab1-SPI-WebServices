@@ -12,7 +12,7 @@ public class Client {
 
     public static void main(String[] args) {
         System.out.println("""
-                Check Inventory descriptions demo
+                Check Inventory annotations demo
                 ----------------------""");
         requestAnnotations("Body");
         requestAnnotations("Electrical");
@@ -38,6 +38,7 @@ public class Client {
                 Parts by Position demo
                 ----------------------""");
         requestPartsByPosition(1, 8);
+        requestPartsByPosition(1, 3, "ELECTRICAL AND IGNITION");
         requestPartsByPosition(1, 0, "ELECTRICAL AND IGNITION");
 
         System.out.println("""

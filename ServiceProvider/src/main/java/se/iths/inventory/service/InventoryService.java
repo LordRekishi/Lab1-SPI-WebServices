@@ -1,9 +1,10 @@
 package se.iths.inventory.service;
 
-import se.iths.inventory.annotation.Description;
+import se.iths.inventory.annotation.Name;
 import se.iths.inventory.entity.Part;
 import se.iths.inventory.interfaces.Inventory;
 
+import java.lang.annotation.Annotation;
 import java.util.*;
 
 public class InventoryService {
@@ -102,11 +103,11 @@ public class InventoryService {
                 .findFirst();
     }
 
-    public Optional<Description> getDescription(String name) {
+    public Optional<Annotation[]> getAnnotations(String name) {
         return loader.stream()
                 .map(ServiceLoader.Provider::get)
-                .map(inventory -> inventory.getClass().getAnnotation(Description.class))
-                .filter(description -> description.name().contains(name))
+                .filter(inventory -> inventory.getClass().getAnnotation(Name.class).name().contains(name))
+                .map(inventory -> inventory.getClass().getAnnotations())
                 .findFirst();
     }
 }

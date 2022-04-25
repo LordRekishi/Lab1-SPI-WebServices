@@ -15,8 +15,9 @@ part categories as their own inventories. This app also include a custom annotat
 ## How to use
 
 1. Clone [this repository](https://github.com/LordRekishi/Lab1-SPI-WebServices.git) to your favorite IDE.
-2. Run the `Main method` in the `Client` module, `Client.java` class
-3. Enjoy beautiful console printouts of demo methods!
+2. Make sure you have Java 18 installed, this project uses the new Switch pattern matching preview feature.
+3. Run the `Main method` in the `Client` module, `Client.java` class
+4. Enjoy beautiful console printouts of demo methods!
 
 ---
 
@@ -24,7 +25,7 @@ part categories as their own inventories. This app also include a custom annotat
 
 ### 1. **Service Provider:**
 
-- This is the `main service` module consisting of `four entities`:
+- This is the `main service` module consisting of `six entities`:
 
 #### One entity class (`Part`)
 - The class includes six `fields`:
@@ -54,14 +55,14 @@ implementations of the Inventory interface.
 - The service class mirrors the interface methods and streams through the `ServiceLoader` providers and filters them
 according to the method intended functionality. As well as one method for looking for the description annotation on inventories.
 
-#### One custom annotation (`Description`)
-- The annotation includes three `methods`:  
-- `String name()` default "No name"
-  - Specify the name of the inventory
-- `String inventoryDescription()` default "No description"
-  - Used to give a more in-depth description of the annotated inventory
-- `String author()` default "No author"
-  - Specify the author of the description
+#### Three custom annotations (`Name`, `Description`, `Author`)
+- The annotations include one `method` each:  
+  - `String name()` default "No name"
+    - Specify the name of the inventory
+  - `String inventoryDescription()` default "No description"
+    - Used to give a more in-depth description of the annotated inventory
+  - `String author()` default "No author"
+    - Specify the author of the description
 
 #### `module-info.java` of the Service Provider:
 
@@ -83,16 +84,16 @@ module se.iths.inventory.service {
 
 #### Application starting class (`Client`)
 - The class includes ten `methods`:
-    - public static void `main`(String[] args)
-    - private static void `requestDescription`(String name, InventoryService service)
-    - private static void `requestPartByID`(Long `id`, InventoryService service)
-    - private static void `requestPartByID`(Long `id`, String `category`, InventoryService service)
-    - private static void `requestPartsByName`(String `name`, InventoryService service)
-    - private static void `requestPartsByName`(String `name`, String `category`, InventoryService service)
-    - private static void `requestPartsByPosition`(int `cabinet`, int `shelf`, InventoryService service)
-    - private static void `requestPartsByPosition`(int `cabinet`, int `shelf`, String `category`, InventoryService service)
-    - private static void `requestAll`(InventoryService service)
-    - private static void `requestAllPartsByCategory`(String `category`, InventoryService service)
+  - public static void `main`(String[] args)
+  - private static void `requestAnnotations`(String name)
+  - private static void `requestPartByID`(Long `id`)
+  - private static void `requestPartByID`(Long `id`, String `category`)
+  - private static void `requestPartsByName`(String `name`)
+  - private static void `requestPartsByName`(String `name`, String `category`)
+  - private static void `requestPartsByPosition`(int `cabinet`, int `shelf`)
+  - private static void `requestPartsByPosition`(int `cabinet`, int `shelf`, String `category`)
+  - private static void `requestAll`()
+  - private static void `requestAllPartsByCategory`(String `category`)
 - These methods request data from the Service class in the ServiceProvider module, which in turn searches the ServiceLoader or for the Description annotation
 
 #### `module-info.java` of the Client:

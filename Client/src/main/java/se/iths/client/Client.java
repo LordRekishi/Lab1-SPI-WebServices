@@ -6,7 +6,6 @@ import se.iths.inventory.annotation.Name;
 import se.iths.inventory.service.InventoryService;
 
 import java.lang.annotation.Annotation;
-import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) {
@@ -54,15 +53,22 @@ public class Client {
     private static void requestAnnotations(String name, InventoryService service) {
         service.getAnnotations(name)
                 .ifPresentOrElse(annotations -> {
-                    for (Annotation annotation : annotations) {
-                        String collectedName = annotation.annotationType().getAnnotation(Name.class).name();
-                        String collectedDescription = annotation.annotationType().getAnnotation(Description.class).inventoryDescription();
-                        String collectedAuthor = annotation.annotationType().getAnnotation(Author.class).author();
+                    String collectedName = "";
+                    String collectedDescription = "";
+                    String collectedAuthor = "";
 
-                        System.out.println("Inventory name: '" + collectedName + "'\n" +
-                                "Description: '" + collectedDescription + "'\n" +
-                                "Author: '" + collectedAuthor + "'");
+                    for (Annotation annotation : annotations) {
+                        switch (annotation) {
+                            case Name n -> collectedName = n.name();
+                            case Description d -> collectedDescription = d.inventoryDescription();
+                            case Author a -> collectedAuthor = a.author();
+                            default -> throw new IllegalStateException("Unexpected value: " + annotation);
+                        }
                     }
+
+                    System.out.println("Inventory name: '" + collectedName + "'\n" +
+                            "Description: '" + collectedDescription + "'\n" +
+                            "Author: '" + collectedAuthor + "'");
                 }, () -> System.out.println("No description with name containing '" + name + "' found!"));
 
     }
